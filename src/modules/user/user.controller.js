@@ -24,7 +24,7 @@ const signUp = async (req, res) => {
     );
 
     res.json({ message: 'Signed up successfully', user: newUser });
-    sendemail()
+    sendemail({email})
   } catch (error) {
     console.error('Error during sign-up:', error);
     res.status(500).json({ message: 'Internal Server Error' });

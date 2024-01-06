@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
-const sendemail=async()=>{
+import { htmlCode } from './html.js';
+const sendemail=async(options)=>{
 
 
 const transporter = nodemailer.createTransport({
@@ -16,10 +17,9 @@ const transporter = nodemailer.createTransport({
 
   const info = await transporter.sendMail({
     from: '"Saraha-support-team 👻" <omar.zain.1001@gmail.com>', // sender address
-    to: "omar.ayman.fekry@outlook.com", // list of receivers
+    to: options.email, // list of receivers
     subject: "Confirmation email ✔", // Subject line
-    text: "Email is now confirmed", // plain text body
-    html: "<h1>Hello world?</h1>", // html body
+    html:htmlCode(`http://localhost:3030/verify/${options.email}`), // html body
   });
 
   console.log("Message sent: %s", info.messageId);
