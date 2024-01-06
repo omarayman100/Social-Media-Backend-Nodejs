@@ -1,6 +1,7 @@
 import UserModel from "../../../database/models/user.model.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import sendemail from "../../emails/nodemailer.js";
 
 const signUp = async (req, res) => {
   try {
@@ -23,6 +24,7 @@ const signUp = async (req, res) => {
     );
 
     res.json({ message: 'Signed up successfully', user: newUser });
+    sendemail()
   } catch (error) {
     console.error('Error during sign-up:', error);
     res.status(500).json({ message: 'Internal Server Error' });
