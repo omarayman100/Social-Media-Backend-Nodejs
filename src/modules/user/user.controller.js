@@ -1,6 +1,6 @@
 import UserModel from "../../../database/models/user.model.js";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt  from 'jsonwebtoken';
 import sendemail from "../../emails/nodemailer.js";
 
 const signUp = async (req, res) => {
@@ -30,6 +30,21 @@ const signUp = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+
+export const verify = async(req,res)=>{
+const {token}=req.params
+ jwt.verify(token,'Sercetoken',async(err,decoded)=>{
+  if(err){
+    return res.json('an error occurred',err)
+  }else{
+    await UserModel.findOneAndUpdate({email:decoded.email},{verified:true})
+    res.json({message:'User email successfully confirmed registration'})
+
+  }
+})
+}
+
 
 const signIn = async (req, res) => {
   try {

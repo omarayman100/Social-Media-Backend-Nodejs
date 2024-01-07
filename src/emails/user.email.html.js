@@ -1,4 +1,4 @@
-export const htmlCode=(link)=>{
+export const html=(token)=>{
     return`<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -36,7 +36,7 @@ export const htmlCode=(link)=>{
           <img class="w-100"  src="https://media.tenor.com/xzjlrhYq_lQAAAAj/cat-nyan-cat.gif" alt="cat">
         </div>
         <p>Thank you for signing up! Please confirm your email address by clicking the button below:</p>
-        <a class="btn btn-primary btn-block" id="confirmBtn" href=${link}>Confirm</a>
+        <a class="btn btn-primary btn-block" id="confirmBtn" href="http://localhost:3030/verify/${token}">Confirm</a>
       </div>
     
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

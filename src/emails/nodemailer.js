@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
-import { htmlCode } from './html.js';
+import { html } from './user.email.html.js';
+import jwt from 'jsonwebtoken'
 const sendemail=async(options)=>{
 
 
@@ -14,15 +15,15 @@ const transporter = nodemailer.createTransport({
 
 
 
-
+  const token = jwt.sign({email:options.email},'Sercetoken')
+  
   const info = await transporter.sendMail({
     from: '"Saraha-support-team 👻" <omar.zain.1001@gmail.com>', // sender address
     to: options.email, // list of receivers
     subject: "Confirmation email ✔", // Subject line
-    html:htmlCode(`http://localhost:3030/verify/${options.email}`), // html body
+    html:html(token), // html body
   });
 
-  console.log("Message sent: %s", info.messageId);
 }
 
 export default sendemail
