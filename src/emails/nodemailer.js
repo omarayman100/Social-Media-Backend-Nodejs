@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
   const token = jwt.sign({email:options.email},'Sercetoken')
   
   const info = await transporter.sendMail({
-    from: '"Saraha-support-team 👻" <omar.zain.1001@gmail.com>', // sender address
+    from: `"Saraha-support-team 👻"<${process.env.email}> `, // sender address
     to: options.email, // list of receivers
     subject: "Confirmation email ✔", // Subject line
     html:html(token), // html body
